@@ -17,12 +17,13 @@ Sistema desenvolvido para avaliação técnica com Ruby on Rails. O projeto abra
    - Filtro por empresa corrigido para retornar apenas usuários da empresa especificada.
    - Filtro por nome de usuário ajustado para permitir buscas parciais e case-insensitive com `ILIKE`.
 
-2. **Teste dos filtros**
-   - RSpec com cobertura de casos de uso para filtros de usuários.
+2. **Teste geral**
+   - RSpec com cobertura de casos de uso para todas as funcionalidades do sistema.
 
 3. **Tweets com paginação por cursor**
    - `GET /tweets`: lista tweets ordenados por mais recentes com paginação baseada em cursor.
    - `GET /users/:user_id/tweets`: mesma lógica aplicada para tweets de um usuário.
+   - Criar a relação entre usuário e tweet.
 
 4. **CRUD de Empresas**
    - CRUD completo com páginas HTML (`CompaniesController`).
@@ -32,6 +33,8 @@ Sistema desenvolvido para avaliação técnica com Ruby on Rails. O projeto abra
 
 6. **Relatório em segundo plano**
    - Relatório gerado com um service/repository usando Sidekiq (`ReportGenerationJob`).
+   - O primeiro relatório deve listar todos os usuários e seus tweets, ordenados por data de criação.
+   - O segundo relatório deve mostrar as empresas e o número de usuários associados a cada uma.
 
 7. **Cobertura de testes**
    - Cobertura extraída com SimpleCov. Relatório em `coverage/index.html`.
