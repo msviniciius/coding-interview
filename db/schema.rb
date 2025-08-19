@@ -16,15 +16,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_19_204630) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "tweets", force: :cascade do |t|
-    t.integer "user_id"
+    t.bigint "user_id"
     t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
@@ -32,9 +32,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_19_204630) do
     t.string "display_name"
     t.string "email"
     t.string "username"
-    t.integer "company_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.bigint "company_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["company_id"], name: "index_users_on_company_id"
   end
+
+  add_foreign_key "tweets", "users"
+  add_foreign_key "users", "companies"
 end
