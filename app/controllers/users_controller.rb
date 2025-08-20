@@ -5,7 +5,11 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @users = @users.by_company(params[:company_id])
-    @users = @users.by_username(params[:username])
+    @users = @users.by_username_or_display_name(params[:username] || params[:display_name])
+  end
+
+  def new
+    @user = @company.users.new
   end
 
   def create

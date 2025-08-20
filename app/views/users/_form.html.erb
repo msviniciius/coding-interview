@@ -1,0 +1,25 @@
+<%= form_with(model: user, url: company_users_path(company), local: true) do |form| %>
+  <% if user.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(user.errors.count, "erro") %> ao salvar:</h4>
+      <ul>
+        <% user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :display_name, "Nome do usuário" %>
+    <%= form.text_field :display_name, class: "form-control" %>
+
+    <%= form.label :email, "Email" %>
+    <%= form.email_field :email, class: "form-control" %>
+
+    <%= form.label :username, "Username" %>
+    <%= form.text_field :username, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Criar Usuário", class: "btn btn-primary" %>
+<% end %>

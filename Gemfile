@@ -48,6 +48,10 @@ group :development, :test do
   gem 'faker'
   gem 'rspec-rails', '~> 8.0.0'
   gem 'mailcatcher'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers', '~> 6.4'
+  gem 'simplecov', require: false
+  gem 'rails-controller-testing'
 end
 
 group :development do

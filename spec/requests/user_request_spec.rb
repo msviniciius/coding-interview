@@ -1,41 +1,41 @@
+# spec/requests/users_spec.rb
 require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
+  let!(:company1) { Company.create!(name: "Company 1") }
+  let!(:company2) { Company.create!(name: "Company 2") }
 
-  RSpec.shared_context 'with multiple companies' do
-    let!(:company_1) { create(:company) }
-    let!(:company_2) { create(:company) }
+  let!(:user_company1_a) { User.create!(username: "user_company1_a", display_name: "User A", email: "a@company1.com", company: company1) }
+  let!(:user_company1_b) { User.create!(username: "user_company1_b", display_name: "User B", email: "b@company1.com", company: company1) }
+  let!(:user_company2)   { User.create!(username: "user_company2", display_name: "User C", email: "c@company2.com", company: company2) }
 
-    before do
-      5.times do
-        create(:user, company: company_1)
-      end
-      5.times do
-        create(:user, company: company_2)
-      end
-    end
-  end
+  describe "GET /companies/:company_id/users" do
+    it "retorna apenas usuários da empresa especificada" do
+      get company_users_path(company1)
 
-  describe "#index" do
-    let(:result) { JSON.parse(response.body) }
+      html = Nokogiri::HTML(response.body)
+      user_names = html.css('table tbody tr td:nth-child(2)').map(&:text)
 
-    context 'when fetching users by company' do
-      include_context 'with multiple companies'
-
-      it 'returns only the users for the specified company' do
-        get company_users_path(company_1)
-        
-        expect(result.size).to eq(company_1.users.size)
-        expect(result.map { |element| element['id'] } ).to eq(company_1.users.ids)
-      end
+      expect(user_names).to include("User A", "User B")
+      expect(user_names).not_to include("User C")
     end
 
-    context 'when fetching all users' do
-      include_context 'with multiple companies'
+    it "filtra usuários por nome de usuário" do
+      get company_users_path(company1, params: { username: "user_company1_a" })
 
-      it 'returns all the users' do
+      html = Nokogiri::HTML(response.body)
+      user_names = html.css('table tbody tr td:nth-child(2)').map(&:text)
 
-      end
+      expect(user_names).to eq(["User A"])
+    end
+
+    it "retorna todos os usuários se o filtro de nome de usuário estiver em branco" do
+      get company_users_path(company1, params: { username: "" })
+
+      html = Nokogiri::HTML(response.body)
+      user_names = html.css('table tbody tr td:nth-child(2)').map(&:text)
+
+      expect(user_names).to include("User A", "User B")
     end
   end
 end
