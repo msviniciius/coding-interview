@@ -49,9 +49,43 @@ Sistema desenvolvido para avaliação técnica com Ruby on Rails. O projeto abra
 
 ## ▶️ Como rodar
 
-**preencher como rodar**
+1. Clone o repositório: 
+
+```bash
+git clone git@github.com:msviniciius/coding-interview.git
+cd coding-interview.
+
+2. Crie um arquivo .env com as variáveis de ambiente necessárias:
+
+POSTGRES_USER=seu_usuario
+POSTGRES_PASSWORD=sua_senha
+POSTGRES_DB=nome_do_banco
+DATABASE_URL=postgres://seu_usuario:sua_senha@db:5432/nome_do_banco
+REDIS_URL=redis://redis:6379/0
+
+3. Build e start dos containers:
+
+docker-compose up --build
+
+---
+
+## 🟡 Isso vai
+
+Preparar o banco (rails db:prepare)
+Subir o servidor Rails na porta 3000 (http://localhost:3000)
+Subir Sidekiq para processamento de jobs
+Subir Redis e MailCatcher
+Acessar a aplicação:
+Aplicação Rails: http://localhost:3000
+MailCatcher: http://localhost:1080
 
 
-## Como testar
+## ✅ Como testar
 
-**preencher como testar**
+4. Dentro do container Docker, rode:
+
+docker-compose run --rm web bundle exec rspec
+
+5. Para rodar com documentação detalhada:
+
+docker-compose run --rm web bundle exec rspec --format documentation
