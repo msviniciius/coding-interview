@@ -1,0 +1,9 @@
+<h1>Tweets</h1>
+
+<turbo-frame id="tweets_list">
+  <%= render partial: "tweets_list", locals: { tweets: @tweets } %>
+</turbo-frame>
+
+<% if @tweets.any? %>
+  <%= button_to "Carregar mais", tweets_path(cursor: @tweets.last.created_at.to_i, user_id: params[:user_id]), method: :get, data: { turbo_frame: "tweets_list" }, class: "btn btn-primary" %>
+<% end %>

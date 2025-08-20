@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Usuário</th>
+      <th>Conteúdo</th>
+      <th>Criado em</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% tweets.each do |tweet| %>
+      <tr>
+        <td><%= tweet.user.display_name %></td>
+        <td><%= tweet.body %></td>
+        <td><%= tweet.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

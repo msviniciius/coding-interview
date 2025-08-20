@@ -1,0 +1,19 @@
+<%= form_with(model: company, local: true) do |form| %>
+  <% if company.errors.any? %>
+    <div>
+      <h2><%= pluralize(company.errors.count, "error") %> erro ao salvar:</h2>
+      <ul>
+        <% company.errors.full_messages.each do |message| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, "Nome da Empresa" %>
+    <%= form.text_field :name, value: company.name, class: "form-control" %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

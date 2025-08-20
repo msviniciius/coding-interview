@@ -1,0 +1,26 @@
+<h1>Empresas</h1>
+
+<%= link_to "Nova Empresa", new_company_path, class: "btn btn-primary" %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @companies.each do |company| %>
+      <tr>
+        <td><%= company.id %></td>
+        <td><%= company.name %></td>
+        <td>
+          <%= link_to 'Ver', company_path(company), class: 'btn btn-primary' %>
+          <%= link_to 'Editar', edit_company_path(company), class: 'btn btn-secondary' %>
+          <%= link_to 'Excluir', company_path(company), method: :delete, data: { confirm: 'Tem certeza?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
