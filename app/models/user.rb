@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   belongs_to :company
 
+  after_create_commit :send_welcome_email
+
   scope :by_company, ->(company_id) { 
     where(company_id: company_id) if company_id.present? 
   }
@@ -11,4 +13,10 @@ class User < ApplicationRecord
 
     where('username LIKE ?', "%#{username.downcase}%")
   }
+
+  private
+
+  def send_welcome_email
+    SendWelcomeEmailJob.perform_later(self.id)
+  end
 end

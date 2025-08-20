@@ -8,6 +8,17 @@ class UsersController < ApplicationController
     @users = @users.by_username(params[:username])
   end
 
+  def create
+    @user = @company.users.new(user_params)
+
+    if @user.save
+      redirect_to company_users_path(@company), notice: 'Usuário criado com sucesso.'
+    else
+      flash.now[:alert] = 'Erro ao criar usuário.'
+      render :new
+    end
+  end
+
   private
 
   def set_company
@@ -16,5 +27,9 @@ class UsersController < ApplicationController
 
   def search_params
     params.permit(:username, :company_id)
+  end
+
+  def user_params
+    params.require(:user).permit(:display_name, :email, :username, :company_id)
   end
 end

@@ -11,6 +11,7 @@ RUN apt-get update -qq && \
       git \
       pkg-config \
       libmsgpack-dev \
+      libsqlite3-dev \
       libffi-dev \
       zlib1g-dev \
       libssl-dev \
