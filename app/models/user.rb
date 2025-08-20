@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  belongs_to :company
+  belongs_to :company, optional: true
+  has_many :tweets, dependent: :destroy
 
   after_create_commit :send_welcome_email
 
