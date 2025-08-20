@@ -24,6 +24,13 @@ gem "puma", "~> 6.2"
 # gem 'capistrano-rails', group: :development
 gem "turbo-rails", "~> 2.0"
 gem "stimulus-rails", "~> 1.3"
+gem 'importmap-rails', '~> 2.2'
+gem "bootstrap", "~> 5.3.2"
+gem 'popper_js', '~> 2.11.8'
+gem 'sassc-rails', '~> 2.1.2'
+gem 'sprockets', '~> 4.2'
+gem 'sprockets-rails', '~> 3.5'
+gem "bootstrap-icons", "~> 1.0.15"
 
 gem "msgpack", ">= 1.5"
 # Reduces boot times through caching; required in config/boot.rb
@@ -50,7 +57,3 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
-gem "turbo-rails", "~> 2.0"
-
-gem "stimulus-rails", "~> 1.3"

@@ -1,6 +1,6 @@
-import { Turbo } from "@hotwired/turbo-rails"
-import { Application } from "@hotwired/stimulus"
-import UsersFilterController from "./controllers/users_filter_controller"
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+import "@hotwired/turbo-rails"
+import "controllers"
 
-const application = Application.start()
-application.register("users_filter", UsersFilterController)
+// Import Bootstrap JS
+import "bootstrap"

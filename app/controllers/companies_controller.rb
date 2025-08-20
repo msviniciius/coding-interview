@@ -19,7 +19,7 @@ class CompaniesController < ApplicationController
   def create
     @company = Company.new(company_params)
     if @company.save
-      redirect_to @company, notice: 'Company was successfully created.'
+      redirect_to @company, notice: 'Empresa criada com sucesso!'
     else
       render :new
     end
@@ -32,7 +32,7 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/:id
   def update
     if @company.update(company_params)
-      redirect_to @company, notice: 'Company was successfully updated.'
+      redirect_to @company, notice: 'Empresa atualizada com sucesso!'
     else
       render :edit
     end
@@ -41,7 +41,7 @@ class CompaniesController < ApplicationController
   # DELETE /companies/:id
   def destroy
     @company.destroy
-    redirect_to companies_url, notice: 'Company was successfully destroyed.'
+    redirect_to companies_url, notice: 'Empresa excluída com sucesso!'
   end
 
   private

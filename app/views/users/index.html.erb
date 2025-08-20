@@ -1,13 +1,17 @@
 <h1>Usuarios</h1>
 
-<%= form_with url: company_users_path(@company), method: :get, data: { turbo_frame: "users_list" }, local: true do |f| %>
-  <div>
-    <%= f.label :username, "Nome do usuário" %>
-    <%= f.text_field :username, value: params[:username], data: { action: "input->users_filter#filter" }%>
-  </div>
+<div class="mb-3">
+  <%= form_with url: company_users_path(@company), method: :get, data: { turbo_frame: "users_list" }, local: true, class: "row g-3 align-items-end" do |f| %>
+    <div class="col-auto">
+      <%= f.label :username, "Nome do usuário", class: "form-label" %>
+      <%= f.text_field :username, value: params[:username], data: { action: "input->users_filter#filter" }, class: "form-control" %>
+    </div>
 
-  <%= f.submit "Filtrar" %>
-<% end %>
+    <div class="col-auto">
+      <%= f.submit "Filtrar", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
 
 <turbo-frame id="users_list">
   <%= render partial: "users_list", locals: { users: @users } %>

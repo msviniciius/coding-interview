@@ -1,12 +1,15 @@
 class TweetsController < ApplicationController
   def index
-    @tweets = Tweet.order(created_at: :desc)
-    @tweets = @tweets.where(user_id: params[:user_id]) if params[:user_id].present?
-
-    if params[:company_id].present?
-      @tweets = @tweets.where('created_at >= ?', Time.at(params[:cursor].to_i))
+    tweets_scope = Tweet.order(created_at: :desc)
+    
+    if params[:cursor]
+      tweets_scope = tweets_scope.where('id < ?', params[:cursor])
     end
 
-    @tweets = @tweets.limit(10)
+    @tweets = tweets_scope.limit(10)
+
+    last_tweet = @tweets.last
+    remaining_tweets = Tweet.where('id < ?', last_tweet.id).exists? if last_tweet
+    @next_cursor = last_tweet.id if remaining_tweets
   end
 end

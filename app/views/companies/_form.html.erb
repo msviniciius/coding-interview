@@ -10,10 +10,10 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="mb-3">
     <%= form.label :name, "Nome da Empresa" %>
     <%= form.text_field :name, value: company.name, class: "form-control" %>
   </div>
 
-  <%= form.submit %>
+  <%= form.submit class: "btn btn-primary" %>
 <% end %>
