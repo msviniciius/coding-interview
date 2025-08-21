@@ -1,4 +1,3 @@
-# app/services/reports/user_tweets_raw_report.rb
 module Reports
   class UserTweetsRawReport
     REPORT_TYPE = :user_tweets
@@ -18,7 +17,7 @@ module Reports
 
     private
 
-    # Busca todos os usuários com seus tweets usando SQL otimizado
+    # Busca todos os usuários com seus tweets
     def fetch_user_tweets
       sql = <<~SQL
         SELECT 

@@ -1,4 +1,3 @@
-# app/services/reports/user_tweets_report.rb
 module Reports
   class UserTweetsReport
     REPORTS_DIR = Rails.root.join("tmp", "reports")
